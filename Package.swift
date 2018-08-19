@@ -16,9 +16,14 @@ let package = Package(
 	targets: [
 		.target(
 			name: "TLS",
-			dependencies: ["HTTP"]),
-		.testTarget(
-			name: "TLSTests",
-			dependencies: ["TLS"]),
+			dependencies: ["Routing", "POSIXSockets", "OpenSSL"]),
+
+		.target(
+			name: "OpenSSL",
+			dependencies: ["Libssl"]),
+
+		.target(
+			name: "Libssl",
+			dependencies: []),
 	]
 )

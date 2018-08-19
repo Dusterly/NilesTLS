@@ -1,0 +1,6 @@
+module Libssl [system] {
+	header "/usr/include/openssl/ssl.h"
+	link "crypto"
+	link "ssl"
+	export *
+}
