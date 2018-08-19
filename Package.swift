@@ -17,6 +17,9 @@ let package = Package(
 		.target(
 			name: "NilesTLS",
 			dependencies: ["Routing", "POSIXSockets", "OpenSSL"]),
+		.testTarget(
+			name: "NilesTLSTests",
+			dependencies: ["NilesTLS"]),
 
 		.target(
 			name: "OpenSSL",
