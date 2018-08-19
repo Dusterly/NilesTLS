@@ -4,18 +4,18 @@
 import PackageDescription
 
 let package = Package(
-	name: "TLS",
+	name: "NilesTLS",
 	products: [
 		.library(
-			name: "TLS",
-			targets: ["TLS"]),
+			name: "NilesTLS",
+			targets: ["NilesTLS"]),
 	],
 	dependencies: [
 		.package(url: "https://bitbucket.org/sdbip/niles.git", from: "0.1.0"),
 	],
 	targets: [
 		.target(
-			name: "TLS",
+			name: "NilesTLS",
 			dependencies: ["Routing", "POSIXSockets", "OpenSSL"]),
 
 		.target(
