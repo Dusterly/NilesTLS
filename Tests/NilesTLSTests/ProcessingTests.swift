@@ -36,7 +36,11 @@ class ProcessingTests: XCTestCase {
 		var data: Data?
 
 		let expectation = self.expectation(description: "response")
-		let session = URLSession(configuration: .default)
+		let session = Foundation.URLSession(
+			configuration: .default,
+			delegate: self,
+			delegateQueue: nil)
+		print("\(url)")
 		session.dataTask(with: url) {
 			data = $0
 			response = $1 as? HTTPURLResponse
@@ -45,6 +49,35 @@ class ProcessingTests: XCTestCase {
 		}.resume()
 		waitForExpectations(timeout: 1)
 		return (error, response, data)
+	}
+}
+
+extension ProcessingTests: NSObjectProtocol {
+	public func isEqual(_ object: Any?) -> Bool {
+		guard let object = object as? ProcessingTests else { return false }
+		return object === self
+	}
+
+	public var hash: Int { return 345 }
+
+	public func `self`() -> Self { return self }
+
+	public func isProxy() -> Bool { return false }
+
+	public var description: String { return "ProcessingTests" }
+}
+
+extension ProcessingTests: URLSessionDelegate {
+	func URLSession(
+		_ session: URLSession,
+		task: URLSessionTask,
+		didReceive challenge: URLAuthenticationChallenge,
+		completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential) -> Void) {
+
+		print("challenge \(challenge.protectionSpace)")
+//		let credential = URLCredential(trust: trust)
+//		completionHandler(.useCredential, credential)
+		completionHandler(.performDefaultHandling, URLCredential(user: "", password: "", persistence: .none))
 	}
 }
 
