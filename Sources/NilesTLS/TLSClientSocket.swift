@@ -10,6 +10,7 @@ public struct TLSClientSocket {
 	init(socket: POSIXClientSocket, context: SSLContext) throws {
 		ssl = try SSL(fileDescriptor: socket.descriptor.rawValue, context: context)
 		self.socket = socket
+		try negotiateConnection()
 	}
 }
 
