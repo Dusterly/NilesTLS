@@ -11,7 +11,7 @@ let package = Package(
 			targets: ["NilesTLS"]),
 	],
 	dependencies: [
-		.package(url: "https://bitbucket.org/sdbip/niles.git", from: "0.1.0"),
+		.package(url: "https://bitbucket.org/lochniles/niles.git", from: "0.1.0"),
 	],
 	targets: [
 		.target(
