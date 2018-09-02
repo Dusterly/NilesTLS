@@ -2,3 +2,5 @@
 /.build
 /Package.resolved
 /*.xcodeproj
+.idea/*
+!.idea/runConfigurations
